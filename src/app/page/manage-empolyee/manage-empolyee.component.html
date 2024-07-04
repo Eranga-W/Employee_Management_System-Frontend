@@ -1,0 +1,40 @@
+<div class="container m-3">
+    <h1 class="text-center mb-4 bg-info p-2 text-white fw-bolder ">Add Employee</h1>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"></span>
+        <input type="text" class="form-control" placeholder="First Name" aria-label="First Name" [(ngModel)]="firstName"
+            aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon2"></span>
+        <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name"
+            aria-describedby="basic-addon2">
+    </div>
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon">
+        <span class="input-group-text" id="basic-addon">.com</span>
+    </div>
+
+    <div class="input-group mb-3 ">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Select Department</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3 ">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Select Role</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
+    <div>
+        <button type="button" class="btn btn-success" (click)="addEmployee()">Add Employee</button>
+    </div>
+
+</div>
