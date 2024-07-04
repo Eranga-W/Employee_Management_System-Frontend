@@ -2,35 +2,35 @@
     <h1 class="text-center mb-4 bg-info p-2 text-white fw-bolder ">Add Employee</h1>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"></span>
-        <input type="text" class="form-control" placeholder="First Name" aria-label="First Name" [(ngModel)]="firstName"
-            aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="First Name" aria-label="First Name" [(ngModel)]="employeeObj.firstName"
+            aria-describedby="basic-addon1" required>
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon2"></span>
-        <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name"
-            aria-describedby="basic-addon2">
+        <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name" [(ngModel)]="employeeObj.lastName"
+            aria-describedby="basic-addon2" required>
     </div>
 
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="basic-addon">
+        <input type="text" class="form-control" placeholder="E-mail" aria-label="E-mail" [(ngModel)]="employeeObj.email" aria-describedby="basic-addon" required>
         <span class="input-group-text" id="basic-addon">.com</span>
     </div>
 
     <div class="input-group mb-3 ">
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" aria-label="Default select example" id="department" [(ngModel)]="employeeObj.departmentId" required>
             <option selected>Select Department</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="1">Dept One</option>
+            <option value="2">Dept Two</option>
+            <option value="3">Dept Three</option>
         </select>
     </div>
 
     <div class="input-group mb-3 ">
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" aria-label="Default select example" id="role" [(ngModel)]="employeeObj.roleId" required>
             <option selected>Select Role</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="1">Role One</option>
+            <option value="2">Role Two</option>
+            <option value="3">Role Three</option>
         </select>
     </div>
     <div>
