@@ -3,11 +3,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { NavComponent } from '../../common/nav/nav.component';
 
 @Component({
   selector: 'app-manage-empolyee',
   standalone: true,
-  imports: [FormsModule,HttpClientModule,CommonModule],
+  imports: [FormsModule,HttpClientModule,CommonModule,NavComponent],
   templateUrl: './manage-empolyee.component.html',
   styleUrl: './manage-empolyee.component.css'
 })
