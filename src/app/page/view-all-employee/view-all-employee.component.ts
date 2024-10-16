@@ -25,29 +25,52 @@ export class ViewAllEmployeeComponent {
     })
   }
 
-  deleteEmployee(employee:any){
+  deleteEmployee(employe: any) {
 
-    Swal.fire({
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.delete(`http://localhost:8080/emp-controller/delete-emp/${employee.id}`,{responseType:'text'}).subscribe(res=>{
-          this.loadEmployeeTable();
+
+        this.http.delete(`http://localhost:8080/emp-controller/delete-emp/${employe.id}`, { responseType: 'text' }).subscribe(res => {
+          this.loadEmployeeTable()
+          swalWithBootstrapButtons.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+          console.log(res);
+
         })
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
+        console.log(employe);
+
+
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "Your imaginary file is safe :)",
+          icon: "error"
         });
       }
     });
   }
+
   public selectedEmployee: any = {
     "id": null,
     "firstName": null,
@@ -58,18 +81,25 @@ export class ViewAllEmployeeComponent {
   };
 
   updateEmploye(employe: any) {
-
-    if(employe!=null){
-      this.selectedEmployee = employe;
-    }
-
-    console.log(employe);
-
+    if(employe!=null){this.selectedEmployee = employe;}
   }
-  
+
   saveUpdateEmployee(){
-    this.http.put("http://localhost:8080/emp-controller/update-employee", this.selectedEmployee).subscribe(res => {
-      console.log("updated!");
-    })
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+        this.http.put("http://localhost:8080/emp-controller/update-employee", this.selectedEmployee).subscribe(res => {
+          console.log("updated!");
+        })
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   }
 }
